@@ -1,0 +1,1192 @@
+[
+  {
+    "id": 5,
+    "name": "NUET Practice - ?????? ????",
+    "description": "??????????? ???????????? ???? ???? ? 60 ????????? (30 ?????????? + 30 ??????????? ????????)",
+    "timeLimit": 120,
+    "mathQuestions": [
+      {
+        "id": 1,
+        "question": "Найдите значение выражения: 3x² + 2x - 5 при x = 2",
+        "options": [
+          "7",
+          "9",
+          "11",
+          "13"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Подставляем x = 2: 3(2)² + 2(2) - 5 = 3(4) + 4 - 5 = 12 + 4 - 5 = 11",
+        "videoUrl": "https://www.youtube.com/watch?v=example1",
+        "subject": "undefined",
+        "videoExplanation": "https://youtu.be/tkgMcdDodGE?si=bCoThu7NlIwlEqgh",
+        "imageUrl": "/uploads/questions/ef4669f3-87b9-485f-9f32-a5c95e5dfdc4.jpg"
+      },
+      {
+        "id": 2,
+        "question": "Решите уравнение: 2x + 7 = 15",
+        "options": [
+          "x = 3",
+          "x = 4",
+          "x = 5",
+          "x = 6"
+        ],
+        "correctAnswer": 1,
+        "explanation": "2x + 7 = 15, 2x = 15 - 7, 2x = 8, x = 4",
+        "videoUrl": "https://www.youtube.com/watch?v=example2"
+      },
+      {
+        "id": 3,
+        "question": "Найдите площадь треугольника со сторонами 3, 4 и 5",
+        "options": [
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Это прямоугольный треугольник (3² + 4² = 5²). Площадь = (1/2) × 3 × 4 = 6",
+        "videoUrl": "https://www.youtube.com/watch?v=example3"
+      },
+      {
+        "id": 4,
+        "question": "Упростите выражение: (x + 3)(x - 2)",
+        "options": [
+          "x² + x - 6",
+          "x² - x + 6",
+          "x² + x + 6",
+          "x² - x - 6"
+        ],
+        "correctAnswer": 0,
+        "explanation": "(x + 3)(x - 2) = x² - 2x + 3x - 6 = x² + x - 6",
+        "videoUrl": "https://www.youtube.com/watch?v=example4"
+      },
+      {
+        "id": 5,
+        "question": "Найдите производную функции f(x) = x³ + 2x²",
+        "options": [
+          "3x² + 4x",
+          "3x² + 2x",
+          "x² + 4x",
+          "3x + 4"
+        ],
+        "correctAnswer": 0,
+        "explanation": "f'(x) = 3x² + 2(2x) = 3x² + 4x",
+        "videoUrl": "https://www.youtube.com/watch?v=example5"
+      },
+      {
+        "id": 6,
+        "question": "Решите неравенство: 2x - 3 > 7",
+        "options": [
+          "x > 5",
+          "x > 4",
+          "x < 5",
+          "x < 4"
+        ],
+        "correctAnswer": 0,
+        "explanation": "2x - 3 > 7, 2x > 10, x > 5",
+        "videoUrl": "https://www.youtube.com/watch?v=example6"
+      },
+      {
+        "id": 7,
+        "question": "Найдите корни уравнения: x² - 5x + 6 = 0",
+        "options": [
+          "x = 2, x = 3",
+          "x = 1, x = 6",
+          "x = -2, x = -3",
+          "x = 0, x = 5"
+        ],
+        "correctAnswer": 0,
+        "explanation": "x² - 5x + 6 = (x - 2)(x - 3) = 0, поэтому x = 2 или x = 3",
+        "videoUrl": "https://www.youtube.com/watch?v=example7"
+      },
+      {
+        "id": 8,
+        "question": "Вычислите: log₂(8)",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "8"
+        ],
+        "correctAnswer": 1,
+        "explanation": "log₂(8) = log₂(2³) = 3",
+        "videoUrl": "https://www.youtube.com/watch?v=example8"
+      },
+      {
+        "id": 9,
+        "question": "Найдите длину окружности с радиусом 5",
+        "options": [
+          "5π",
+          "10π",
+          "25π",
+          "π"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Длина окружности = 2πr = 2π(5) = 10π",
+        "videoUrl": "https://www.youtube.com/watch?v=example9"
+      },
+      {
+        "id": 10,
+        "question": "Решите систему: x + y = 5, x - y = 1",
+        "options": [
+          "x = 3, y = 2",
+          "x = 2, y = 3",
+          "x = 4, y = 1",
+          "x = 1, y = 4"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Складываем уравнения: 2x = 6, x = 3. Подставляем: 3 + y = 5, y = 2",
+        "videoUrl": "https://www.youtube.com/watch?v=example10"
+      },
+      {
+        "id": 11,
+        "question": "Найдите sin(30°)",
+        "options": [
+          "1/2",
+          "√3/2",
+          "√2/2",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": "sin(30°) = 1/2 - это табличное значение",
+        "videoUrl": "https://www.youtube.com/watch?v=example11"
+      },
+      {
+        "id": 12,
+        "question": "Вычислите интеграл: ∫(2x + 1)dx",
+        "options": [
+          "x² + x + C",
+          "2x² + x + C",
+          "x² + 2x + C",
+          "2x + C"
+        ],
+        "correctAnswer": 0,
+        "explanation": "∫(2x + 1)dx = ∫2x dx + ∫1 dx = x² + x + C",
+        "videoUrl": "https://www.youtube.com/watch?v=example12"
+      },
+      {
+        "id": 13,
+        "question": "Найдите объем куба со стороной 4",
+        "options": [
+          "16",
+          "32",
+          "48",
+          "64"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Объем куба = a³ = 4³ = 64",
+        "videoUrl": "https://www.youtube.com/watch?v=example13"
+      },
+      {
+        "id": 14,
+        "question": "Упростите: √(16x⁴)",
+        "options": [
+          "4x²",
+          "4x",
+          "2x²",
+          "8x²"
+        ],
+        "correctAnswer": 0,
+        "explanation": "√(16x⁴) = √16 × √(x⁴) = 4 × x² = 4x²",
+        "videoUrl": "https://www.youtube.com/watch?v=example14"
+      },
+      {
+        "id": 15,
+        "question": "Найдите предел: lim(x→2) (x² - 4)/(x - 2)",
+        "options": [
+          "2",
+          "4",
+          "0",
+          "∞"
+        ],
+        "correctAnswer": 1,
+        "explanation": "lim(x→2) (x² - 4)/(x - 2) = lim(x→2) (x + 2)(x - 2)/(x - 2) = lim(x→2) (x + 2) = 4",
+        "videoUrl": "https://www.youtube.com/watch?v=example15"
+      },
+      {
+        "id": 16,
+        "question": "Найдите медиану набора чисел: 3, 7, 2, 9, 5",
+        "options": [
+          "3",
+          "5",
+          "7",
+          "9"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Упорядочиваем: 2, 3, 5, 7, 9. Медиана = средний элемент = 5",
+        "videoUrl": "https://www.youtube.com/watch?v=example16"
+      },
+      {
+        "id": 17,
+        "question": "Решите уравнение: |x - 3| = 5",
+        "options": [
+          "x = 8 или x = -2",
+          "x = 2 или x = 8",
+          "x = -8 или x = 2",
+          "x = 3 или x = 5"
+        ],
+        "correctAnswer": 0,
+        "explanation": "|x - 3| = 5 означает x - 3 = 5 или x - 3 = -5, откуда x = 8 или x = -2",
+        "videoUrl": "https://www.youtube.com/watch?v=example17"
+      },
+      {
+        "id": 18,
+        "question": "Найдите cos(60°)",
+        "options": [
+          "1/2",
+          "√3/2",
+          "√2/2",
+          "0"
+        ],
+        "correctAnswer": 0,
+        "explanation": "cos(60°) = 1/2 - это табличное значение",
+        "videoUrl": "https://www.youtube.com/watch?v=example18"
+      },
+      {
+        "id": 19,
+        "question": "Вычислите: 2³ × 2⁵",
+        "options": [
+          "2⁸",
+          "2¹⁵",
+          "4⁸",
+          "16"
+        ],
+        "correctAnswer": 0,
+        "explanation": "2³ × 2⁵ = 2³⁺⁵ = 2⁸",
+        "videoUrl": "https://www.youtube.com/watch?v=example19"
+      },
+      {
+        "id": 20,
+        "question": "Найдите площадь круга с радиусом 3",
+        "options": [
+          "6π",
+          "9π",
+          "12π",
+          "18π"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Площадь круга = πr² = π(3)² = 9π",
+        "videoUrl": "https://www.youtube.com/watch?v=example20"
+      },
+      {
+        "id": 21,
+        "question": "Решите уравнение: 3ˣ = 27",
+        "options": [
+          "x = 2",
+          "x = 3",
+          "x = 9",
+          "x = 27"
+        ],
+        "correctAnswer": 1,
+        "explanation": "3ˣ = 27 = 3³, поэтому x = 3",
+        "videoUrl": "https://www.youtube.com/watch?v=example21"
+      },
+      {
+        "id": 22,
+        "question": "Найдите среднее арифметическое чисел: 4, 6, 8, 10, 12",
+        "options": [
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Среднее арифметическое = (4 + 6 + 8 + 10 + 12) / 5 = 40 / 5 = 8",
+        "videoUrl": "https://www.youtube.com/watch?v=example22"
+      },
+      {
+        "id": 23,
+        "question": "Упростите: (a²b³)²",
+        "options": [
+          "a⁴b⁶",
+          "a²b⁶",
+          "a⁴b³",
+          "a⁶b⁹"
+        ],
+        "correctAnswer": 0,
+        "explanation": "(a²b³)² = (a²)² × (b³)² = a⁴b⁶",
+        "videoUrl": "https://www.youtube.com/watch?v=example23"
+      },
+      {
+        "id": 24,
+        "question": "Найдите дискриминант уравнения: x² - 6x + 9 = 0",
+        "options": [
+          "0",
+          "9",
+          "36",
+          "-9"
+        ],
+        "correctAnswer": 0,
+        "explanation": "D = b² - 4ac = (-6)² - 4(1)(9) = 36 - 36 = 0",
+        "videoUrl": "https://www.youtube.com/watch?v=example24"
+      },
+      {
+        "id": 25,
+        "question": "Вычислите: ∛64",
+        "options": [
+          "2",
+          "4",
+          "8",
+          "16"
+        ],
+        "correctAnswer": 1,
+        "explanation": "∛64 = ∛(4³) = 4",
+        "videoUrl": "https://www.youtube.com/watch?v=example25"
+      },
+      {
+        "id": 26,
+        "question": "Найдите периметр прямоугольника со сторонами 5 и 7",
+        "options": [
+          "12",
+          "24",
+          "35",
+          "70"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Периметр = 2(a + b) = 2(5 + 7) = 2(12) = 24",
+        "videoUrl": "https://www.youtube.com/watch?v=example26"
+      },
+      {
+        "id": 27,
+        "question": "Решите пропорцию: x/4 = 15/20",
+        "options": [
+          "x = 2",
+          "x = 3",
+          "x = 4",
+          "x = 5"
+        ],
+        "correctAnswer": 1,
+        "explanation": "x/4 = 15/20 = 3/4, поэтому x = 4 × 3/4 = 3",
+        "videoUrl": "https://www.youtube.com/watch?v=example27"
+      },
+      {
+        "id": 28,
+        "question": "Найдите tan(45°)",
+        "options": [
+          "0",
+          "1/2",
+          "1",
+          "√3"
+        ],
+        "correctAnswer": 2,
+        "explanation": "tan(45°) = 1 - это табличное значение",
+        "videoUrl": "https://www.youtube.com/watch?v=example28"
+      },
+      {
+        "id": 29,
+        "question": "Вычислите: (1/2)⁻²",
+        "options": [
+          "1/4",
+          "2",
+          "4",
+          "8"
+        ],
+        "correctAnswer": 2,
+        "explanation": "(1/2)⁻² = (2/1)² = 2² = 4",
+        "videoUrl": "https://www.youtube.com/watch?v=example29"
+      },
+      {
+        "id": 30,
+        "question": "Найдите сумму первых 5 натуральных чисел",
+        "options": [
+          "10",
+          "15",
+          "20",
+          "25"
+        ],
+        "correctAnswer": 1,
+        "explanation": "1 + 2 + 3 + 4 + 5 = 15",
+        "videoUrl": "https://www.youtube.com/watch?v=example30"
+      }
+    ],
+    "criticalQuestions": [
+      {
+        "id": 39,
+        "question": "1",
+        "options": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": "1",
+        "subject": "critical"
+      },
+      {
+        "id": 40,
+        "question": "1",
+        "options": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": "1",
+        "subject": "critical"
+      },
+      {
+        "id": 41,
+        "question": "1",
+        "options": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": "1",
+        "subject": "critical"
+      },
+      {
+        "id": 42,
+        "question": "1",
+        "options": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": "1",
+        "subject": "critical"
+      },
+      {
+        "id": 43,
+        "question": "1",
+        "options": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": "1",
+        "subject": "critical"
+      },
+      {
+        "id": 44,
+        "question": "1",
+        "options": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": "1",
+        "subject": "critical"
+      },
+      {
+        "id": 45,
+        "question": "1",
+        "options": [
+          "1",
+          "1",
+          "v",
+          "v"
+        ],
+        "correctAnswer": 0,
+        "explanation": "v",
+        "subject": "critical"
+      },
+      {
+        "id": 46,
+        "question": "v",
+        "options": [
+          "v",
+          "v",
+          "v",
+          "v"
+        ],
+        "correctAnswer": 0,
+        "explanation": "v",
+        "subject": "critical"
+      },
+      {
+        "id": 47,
+        "question": "vdz",
+        "options": [
+          "dv",
+          "v",
+          "v",
+          "v"
+        ],
+        "correctAnswer": 0,
+        "explanation": "v",
+        "subject": "critical"
+      },
+      {
+        "id": 48,
+        "question": "c",
+        "options": [
+          "c",
+          "c",
+          "c",
+          "c"
+        ],
+        "correctAnswer": 0,
+        "explanation": "c",
+        "subject": "critical"
+      },
+      {
+        "id": 49,
+        "question": "c",
+        "options": [
+          "cc",
+          "c",
+          "c",
+          "c"
+        ],
+        "correctAnswer": 0,
+        "explanation": "c",
+        "subject": "critical"
+      },
+      {
+        "id": 50,
+        "question": "c",
+        "options": [
+          "c",
+          "d",
+          "dd",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 51,
+        "question": "d",
+        "options": [
+          "d",
+          "ds",
+          "ds",
+          "ds"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 52,
+        "question": "ddd",
+        "options": [
+          "dd",
+          "d",
+          "sddd",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 53,
+        "question": "dd",
+        "options": [
+          "d",
+          "dd",
+          "dd",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "dd",
+        "subject": "critical",
+        "hint": "d"
+      },
+      {
+        "id": 54,
+        "question": "dd",
+        "options": [
+          "d",
+          "d",
+          "dd",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 55,
+        "question": "d",
+        "options": [
+          "d",
+          "d",
+          "d",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 56,
+        "question": "d",
+        "options": [
+          "dd",
+          "dd",
+          "dd",
+          "dd"
+        ],
+        "correctAnswer": 0,
+        "explanation": "dd",
+        "subject": "critical"
+      },
+      {
+        "id": 57,
+        "question": "d",
+        "options": [
+          "dd",
+          "dd",
+          "d",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 58,
+        "question": "d",
+        "options": [
+          "d",
+          "d",
+          "d",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 59,
+        "question": "dd",
+        "options": [
+          "d",
+          "d",
+          "d",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 60,
+        "question": "d",
+        "options": [
+          "d",
+          "d",
+          "d",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 61,
+        "question": "d",
+        "options": [
+          "d",
+          "d",
+          "d",
+          "dd"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 62,
+        "question": "d",
+        "options": [
+          "d",
+          "dd",
+          "d",
+          "dd"
+        ],
+        "correctAnswer": 0,
+        "explanation": "dd",
+        "subject": "critical"
+      },
+      {
+        "id": 63,
+        "question": "d",
+        "options": [
+          "dd",
+          "dd",
+          "d",
+          "dd"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 64,
+        "question": "d",
+        "options": [
+          "d",
+          "d",
+          "ddd",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 65,
+        "question": "d",
+        "options": [
+          "dd",
+          "d",
+          "dd",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 66,
+        "question": "d",
+        "options": [
+          "d",
+          "d",
+          "dd",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 67,
+        "question": "d",
+        "options": [
+          "d",
+          "d",
+          "d",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      },
+      {
+        "id": 68,
+        "question": "d",
+        "options": [
+          "d",
+          "d",
+          "d",
+          "d"
+        ],
+        "correctAnswer": 0,
+        "explanation": "d",
+        "subject": "critical"
+      }
+    ],
+    "createdAt": "2025-08-27T12:08:42.913Z",
+    "updatedAt": "2025-08-27T12:47:27.504Z",
+    "criticalThinkingQuestions": [
+      {
+        "id": 31,
+        "question": "Все студенты изучают математику. Анна - студентка. Следовательно:",
+        "options": [
+          "Анна изучает математику",
+          "Анна не изучает математику",
+          "Анна может изучать математику",
+          "Недостаточно информации"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Это пример дедуктивного рассуждения. Если все студенты изучают математику, и Анна - студентка, то логически следует, что Анна изучает математику.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical1"
+      },
+      {
+        "id": 32,
+        "question": "Какое из утверждений является логической ошибкой?",
+        "options": [
+          "Все птицы летают, пингвин - птица, значит пингвин летает",
+          "Если идет дождь, то земля мокрая",
+          "Некоторые кошки черные",
+          "Все люди смертны"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Это ложная посылка. Не все птицы летают (пингвины, страусы не летают), поэтому вывод неверен.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical2"
+      },
+      {
+        "id": 33,
+        "question": "В городе А преступность выше, чем в городе Б. В городе А больше полицейских. Можно ли сделать вывод, что больше полицейских приводит к большей преступности?",
+        "options": [
+          "Да, это очевидно",
+          "Нет, корреляция не означает причинность",
+          "Да, но только частично",
+          "Недостаточно данных"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Это классический пример ошибки 'корреляция не означает причинность'. Больше полицейских может быть следствием, а не причиной высокой преступности.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical3"
+      },
+      {
+        "id": 34,
+        "question": "Что является примером индуктивного рассуждения?",
+        "options": [
+          "Все лебеди белые, этот лебедь белый",
+          "Солнце вставало каждый день, значит завтра тоже встанет",
+          "Если А=Б и Б=В, то А=В",
+          "Все квадраты - прямоугольники"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Индуктивное рассуждение основано на наблюдениях и делает общие выводы из частных случаев.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical4"
+      },
+      {
+        "id": 35,
+        "question": "Какой тип ошибки представляет аргумент: 'Либо ты с нами, либо против нас'?",
+        "options": [
+          "Ложная дилемма",
+          "Аргумент к личности",
+          "Круговое рассуждение",
+          "Соломенное чучело"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Ложная дилемма представляет только два варианта, когда на самом деле их может быть больше.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical5"
+      },
+      {
+        "id": 36,
+        "question": "В исследовании участвовали только мужчины 20-25 лет. Можно ли результаты применить ко всему населению?",
+        "options": [
+          "Да, люди одинаковы",
+          "Нет, выборка не репрезентативна",
+          "Да, если исследование качественное",
+          "Зависит от темы исследования"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Выборка должна быть репрезентативной для обобщения результатов на всю популяцию.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical6"
+      },
+      {
+        "id": 37,
+        "question": "Что означает 'бремя доказательства'?",
+        "options": [
+          "Доказательства тяжелые",
+          "Тот, кто утверждает, должен доказать",
+          "Все должны доказывать свои слова",
+          "Доказательства не нужны"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Бремя доказательства лежит на том, кто выдвигает утверждение, особенно экстраординарное.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical7"
+      },
+      {
+        "id": 38,
+        "question": "Какое утверждение можно опровергнуть (фальсифицировать)?",
+        "options": [
+          "Все лебеди белые",
+          "Бог существует",
+          "Красота субъективна",
+          "Любовь прекрасна"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Утверждение 'все лебеди белые' можно опровергнуть, найдя одного черного лебедя.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical8"
+      },
+      {
+        "id": 39,
+        "question": "В чем проблема аргумента: 'Мой дедушка курил всю жизнь и дожил до 90 лет, значит курение не вредно'?",
+        "options": [
+          "Анекдотическое свидетельство",
+          "Правильный аргумент",
+          "Недостаток данных",
+          "Эмоциональный аргумент"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Один случай не может опровергнуть статистические данные о вреде курения.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical9"
+      },
+      {
+        "id": 40,
+        "question": "Что такое 'соломенное чучело' в аргументации?",
+        "options": [
+          "Слабый аргумент",
+          "Искажение позиции оппонента",
+          "Использование эмоций",
+          "Отвлечение внимания"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'Соломенное чучело' - это искажение или упрощение позиции оппонента для легкого опровержения.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical10"
+      },
+      {
+        "id": 41,
+        "question": "Какой принцип помогает выбрать между конкурирующими объяснениями?",
+        "options": [
+          "Принцип большинства",
+          "Бритва Оккама",
+          "Золотое правило",
+          "Принцип справедливости"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Бритва Оккама предлагает выбирать самое простое объяснение, не умножая сущности без необходимости.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical11"
+      },
+      {
+        "id": 42,
+        "question": "В чем ошибка рассуждения: 'После того, значит вследствие того'?",
+        "options": [
+          "Нет ошибки",
+          "Путаница причины и следствия",
+          "Ложная корреляция",
+          "Недостаток данных"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Последовательность событий не означает причинно-следственную связь.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical12"
+      },
+      {
+        "id": 43,
+        "question": "Что характеризует критическое мышление?",
+        "options": [
+          "Критика всего подряд",
+          "Скептицизм ко всему",
+          "Анализ и оценка информации",
+          "Отрицание авторитетов"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Критическое мышление - это способность анализировать, оценивать и синтезировать информацию.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical13"
+      },
+      {
+        "id": 44,
+        "question": "Какое из утверждений демонстрирует предвзятость подтверждения?",
+        "options": [
+          "Я ищу информацию с разных сторон",
+          "Я читаю только то, что подтверждает мои взгляды",
+          "Я сомневаюсь в своих убеждениях",
+          "Я анализирую противоположные мнения"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Предвзятость подтверждения - это тенденция искать и интерпретировать информацию, подтверждающую наши убеждения.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical14"
+      },
+      {
+        "id": 45,
+        "question": "В споре оппонент сказал: 'Ты просто молод и неопытен'. Какая это ошибка?",
+        "options": [
+          "Аргумент к личности",
+          "Правильное замечание",
+          "Аргумент к авторитету",
+          "Ложная дилемма"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Аргумент к личности (ad hominem) атакует человека, а не его аргументы.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical15"
+      },
+      {
+        "id": 46,
+        "question": "Что означает 'репрезентативность выборки'?",
+        "options": [
+          "Большой размер выборки",
+          "Выборка отражает характеристики популяции",
+          "Случайный отбор",
+          "Качественные данные"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Репрезентативная выборка точно отражает характеристики всей изучаемой популяции.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical16"
+      },
+      {
+        "id": 47,
+        "question": "Какой вопрос НЕ поможет в критическом анализе источника?",
+        "options": [
+          "Кто автор и каковы его квалификации?",
+          "Когда была опубликована информация?",
+          "Нравится ли мне эта информация?",
+          "Какие доказательства приводятся?"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Личные предпочтения не являются критерием достоверности информации.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical17"
+      },
+      {
+        "id": 48,
+        "question": "В чем проблема утверждения: 'Все политики лжецы'?",
+        "options": [
+          "Это правда",
+          "Слишком широкое обобщение",
+          "Недостаточно эмоций",
+          "Слишком мягко"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Это пример чрезмерного обобщения - приписывание характеристики всей группе на основе действий некоторых.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical18"
+      },
+      {
+        "id": 49,
+        "question": "Что такое 'эффект ореола' в восприятии информации?",
+        "options": [
+          "Красивая подача информации",
+          "Влияние одной характеристики на общее впечатление",
+          "Яркое освещение",
+          "Религиозный символ"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Эффект ореола - когда одна положительная характеристика влияет на восприятие всех остальных.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical19"
+      },
+      {
+        "id": 50,
+        "question": "Какое утверждение лучше всего описывает научный метод?",
+        "options": [
+          "Доказывает истину раз и навсегда",
+          "Создает теории, которые можно проверить и опровергнуть",
+          "Основан только на логике",
+          "Не требует доказательств"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Научный метод создает фальсифицируемые теории, которые можно проверить экспериментально.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical20"
+      },
+      {
+        "id": 51,
+        "question": "В исследовании 90% участников улучшили результаты. Что еще нужно знать для оценки?",
+        "options": [
+          "Ничего, результат отличный",
+          "Размер выборки и контрольную группу",
+          "Имена участников",
+          "Стоимость исследования"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Для корректной оценки нужны размер выборки, контрольная группа и методология исследования.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical21"
+      },
+      {
+        "id": 52,
+        "question": "Что означает 'когнитивный диссонанс'?",
+        "options": [
+          "Музыкальная дисгармония",
+          "Дискомфорт от противоречивых убеждений",
+          "Проблемы с памятью",
+          "Неспособность думать"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Когнитивный диссонанс - психологический дискомфорт от противоречивых убеждений или информации.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical22"
+      },
+      {
+        "id": 53,
+        "question": "Какой принцип важен при оценке экстраординарных утверждений?",
+        "options": [
+          "Верить всему",
+          "Экстраординарные утверждения требуют экстраординарных доказательств",
+          "Отвергать все необычное",
+          "Полагаться на интуицию"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Чем более необычно утверждение, тем более убедительные доказательства оно требует.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical23"
+      },
+      {
+        "id": 54,
+        "question": "В чем проблема аргумента: 'Миллионы людей не могут ошибаться'?",
+        "options": [
+          "Аргумент к большинству",
+          "Правильный аргумент",
+          "Недостаток данных",
+          "Слишком скромно"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Аргумент к большинству (ad populum) ошибочно предполагает, что популярность равна истинности.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical24"
+      },
+      {
+        "id": 55,
+        "question": "Что такое 'скользкий склон' в логике?",
+        "options": [
+          "Физическая опасность",
+          "Утверждение, что одно событие приведет к цепи негативных последствий",
+          "Математическая функция",
+          "Геологическое явление"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'Скользкий склон' - логическая ошибка, предполагающая неизбежную цепь негативных событий.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical25"
+      },
+      {
+        "id": 56,
+        "question": "Какой подход лучше всего подходит для решения сложных проблем?",
+        "options": [
+          "Полагаться на интуицию",
+          "Разбить на части и анализировать систематически",
+          "Игнорировать проблему",
+          "Спросить у других"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Системный анализ, разбивающий сложную проблему на управляемые части, наиболее эффективен.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical26"
+      },
+      {
+        "id": 57,
+        "question": "В чем важность рассмотрения альтернативных объяснений?",
+        "options": [
+          "Это пустая трата времени",
+          "Помогает избежать поспешных выводов",
+          "Создает путаницу",
+          "Не имеет значения"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Рассмотрение альтернатив помогает избежать туннельного мышления и найти лучшие решения.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical27"
+      },
+      {
+        "id": 58,
+        "question": "Что означает 'эмоциональное рассуждение'?",
+        "options": [
+          "Рассуждение о эмоциях",
+          "Принятие решений на основе чувств, а не фактов",
+          "Эмпатия к другим",
+          "Выражение эмоций"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Эмоциональное рассуждение - ошибка, когда чувства принимаются за факты.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical28"
+      },
+      {
+        "id": 59,
+        "question": "Какой вопрос наиболее важен при анализе статистики?",
+        "options": [
+          "Кто собирал данные и как?",
+          "Нравятся ли мне цифры?",
+          "Сколько это стоило?",
+          "Когда это было опубликовано?"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Методология сбора данных критически важна для оценки достоверности статистики.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical29"
+      },
+      {
+        "id": 60,
+        "question": "Что лучше всего характеризует открытый ум?",
+        "options": [
+          "Принятие любых идей",
+          "Готовность изменить мнение при наличии убедительных доказательств",
+          "Отсутствие собственного мнения",
+          "Согласие со всеми"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Открытый ум готов пересмотреть свои взгляды на основе новых убедительных доказательств.",
+        "videoUrl": "https://www.youtube.com/watch?v=critical30"
+      }
+    ],
+    "published": true,
+    "publishedAt": "2025-08-27T12:42:21.370Z"
+  }
+]
