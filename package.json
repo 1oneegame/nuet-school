@@ -10,7 +10,8 @@
     "deploy": "node deploy.js",
     "deploy:skip-build": "node deploy.js --skip-build",
     "vercel:build": "next build",
-    "vercel:dev": "vercel dev"
+    "vercel:dev": "vercel dev",
+    "postinstall": "npm ls styled-jsx || npm install styled-jsx@^5.1.6"
   },
   "dependencies": {
     "@types/formidable": "^3.4.5",

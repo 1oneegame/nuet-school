@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['react-icons'],
+  transpilePackages: ['react-icons', 'styled-jsx'],
   reactStrictMode: true,
+  // Ensure styled-jsx is properly resolved
+  webpack: (config, { isServer }) => {
+    // Ensure styled-jsx is resolved correctly
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'styled-jsx': require.resolve('styled-jsx'),
+      'styled-jsx/style': require.resolve('styled-jsx/style'),
+    };
+    return config;
+  },
   images: {
     domains: ['localhost', 'example.com'], // Add your Vercel domain here when deployed
   },
