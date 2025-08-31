@@ -1,13 +1,21 @@
 /** @type {import('next').NextConfig} */
-const withTM = require('next-transpile-modules')(['react-icons']);
-
 const nextConfig = {
+  transpilePackages: ['react-icons'],
   reactStrictMode: true,
   images: {
     domains: ['localhost', 'example.com'], // Add your Vercel domain here when deployed
   },
   // Optimize for production
   swcMinify: true,
+  experimental: {
+    outputFileTracingExcludes: {
+      '*': [
+        './public/uploads/**',
+        './node_modules/**',
+        './.next/cache/**'
+      ]
+    }
+  },
   // Handle API routes properly
   async rewrites() {
     return [
@@ -33,4 +41,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withTM(nextConfig);
+module.exports = nextConfig;

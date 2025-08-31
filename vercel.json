@@ -1,4 +1,11 @@
 {
+  "build": {
+    "env": {
+      "VERCEL_BUILD_SYSTEM_REPORT": "1",
+      "NPM_CONFIG_CACHE": "/tmp/.npm",
+      "NEXT_TELEMETRY_DISABLED": "1"
+    }
+  },
   "functions": {
     "src/pages/api/**/*.ts": {
       "maxDuration": 30
