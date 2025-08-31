@@ -4,12 +4,31 @@ const nextConfig = {
   reactStrictMode: true,
   // Ensure styled-jsx is properly resolved
   webpack: (config, { isServer }) => {
-    // Ensure styled-jsx is resolved correctly
+    // Ensure styled-jsx is resolved correctly for both client and server
     config.resolve.alias = {
       ...config.resolve.alias,
       'styled-jsx': require.resolve('styled-jsx'),
       'styled-jsx/style': require.resolve('styled-jsx/style'),
     };
+    
+    // Add fallback for Node.js runtime
+    if (isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        'styled-jsx': require.resolve('styled-jsx'),
+        'styled-jsx/style': require.resolve('styled-jsx/style'),
+      };
+    }
+    
+    // Ensure styled-jsx is not externalized in server builds
+    if (isServer) {
+      if (Array.isArray(config.externals)) {
+        config.externals = config.externals.filter(
+          external => typeof external !== 'string' || !external.includes('styled-jsx')
+        );
+      }
+    }
+    
     return config;
   },
   images: {
