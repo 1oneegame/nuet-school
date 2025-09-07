@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next';
 import { AuthenticatedRequest, withAdminAuth } from '../../../middleware/auth';
 import dbConnect from '../../../backend/lib/dbConnect';
-import LoginAttempt from '../../../../backend/models/LoginAttempt';
+import LoginAttempt from '../../../backend/models/LoginAttempt';
 import { getLoginStatistics } from '../../../utils/loginLogger';
 
 const handler = async (req: AuthenticatedRequest, res: NextApiResponse) => {

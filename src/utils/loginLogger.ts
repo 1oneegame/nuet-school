@@ -1,7 +1,6 @@
 import { NextApiRequest } from 'next';
 import { UAParser } from 'ua-parser-js';
-
-const LoginAttempt = require('../../backend/models/LoginAttempt');
+import LoginAttempt from '../backend/models/LoginAttempt';
 
 interface LoginLogData {
   userId?: string;

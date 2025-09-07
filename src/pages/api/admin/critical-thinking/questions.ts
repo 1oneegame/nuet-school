@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import dbConnect from '../../../../backend/lib/dbConnect';
-const { CriticalThinkingQuestion, CriticalThinkingExam } = require('../../../../models/CriticalThinking');
+import { CriticalThinkingQuestion, CriticalThinkingExam } from '../../../../backend/models/CriticalThinking';
 
 const UPLOADS_DIR = path.join(process.cwd(), 'public', 'uploads', 'critical-thinking');
 
