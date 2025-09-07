@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const User = require('../backend/models/User');
+require('dotenv').config({ path: '../.env' });
 
 // Подключение к MongoDB
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/nuet-app';
+const MONGODB_URI = process.env.MONGODB_URI
 
 async function createTestStudents() {
   try {
