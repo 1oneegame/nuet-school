@@ -2,9 +2,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import dbConnect from '../../../backend/lib/dbConnect';
 import User from '../../../backend/models/User';
-import { withErrorHandler, createApiError } from '../../../middleware/apiErrorHandler';
+import { createApiError } from '../../../middleware/apiErrorHandler';
 
-async function POST(
+export async function POST(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -20,10 +20,6 @@ async function POST(
       nodeEnv: process.env.NODE_ENV
     }
   });
-
-  if (req.method !== 'POST') {
-    throw createApiError('Method not allowed', 405);
-  }
 
   const { email, password } = req.body;
 
@@ -94,5 +90,3 @@ async function POST(
     redirectTo
   });
 }
-
-export default withErrorHandler(POST);
