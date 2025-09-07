@@ -4,7 +4,7 @@
   "description": "Персональная подготовка к НУЕТ и критическому мышлению",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "node deploy.js",

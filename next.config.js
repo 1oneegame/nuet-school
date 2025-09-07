@@ -70,8 +70,4 @@ const nextConfig = {
   },
 };
 
-module.exports = {
-  ...nextConfig,
-  output: 'export',
-  trailingSlash: true
-};
+module.exports = nextConfig;
