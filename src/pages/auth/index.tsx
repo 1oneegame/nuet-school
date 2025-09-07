@@ -57,12 +57,14 @@ const AuthPage: React.FC = () => {
 
       if (isLogin) {
         const { data } = await authAPI.login(email, password);
-        if (data?.token) {
-          authManager.setAuth(data.token, data.user);
+        if (!data?.success || !data?.token) {
+          throw new Error(data?.message || 'Ошибка входа');
         }
+        authManager.setAuth(data.token, data.user);
         setIsSuccess(true);
+        const redirect = data?.redirectTo || (data?.user?.role === 'Admin' ? '/admin' : '/dashboard');
         setTimeout(() => {
-          router.push(data?.redirectTo || '/dashboard');
+          router.push(redirect);
         }, 1500);
       } else {
         const { data } = await authAPI.register({ 
@@ -91,7 +93,8 @@ const AuthPage: React.FC = () => {
       }
 
     } catch (err: any) {
-      setError(err.message || 'Произошла ошибка. Пожалуйста, попробуйте снова.');
+      const message = err?.response?.data?.message || err?.message || 'Произошла ошибка. Пожалуйста, попробуйте снова.';
+      setError(message);
     } finally {
       setIsLoading(false);
     }

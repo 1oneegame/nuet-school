@@ -21,7 +21,10 @@ export default async function POST(
 
     let decoded: any;
     try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback-secret');
+      if (!process.env.JWT_SECRET) {
+        return res.status(500).json({ message: 'Server configuration error' });
+      }
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
     } catch (error: any) {
       if (error.name === 'TokenExpiredError') {
         decoded = jwt.decode(token);
@@ -44,6 +47,9 @@ export default async function POST(
       return res.status(403).json({ message: 'Access denied. Invalid user role.' });
     }
 
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ message: 'Server configuration error' });
+    }
     const newToken = jwt.sign(
       { 
         userId: user._id, 
@@ -51,7 +57,7 @@ export default async function POST(
         role: user.role,
         hasStudentAccess: user.hasStudentAccess
       },
-      process.env.JWT_SECRET || 'fallback-secret',
+      process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
 

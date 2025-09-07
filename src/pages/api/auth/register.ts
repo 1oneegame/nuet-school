@@ -105,6 +105,7 @@ export default async function POST(
     console.log(`Новая регистрация: ${email} (${normalizedWhatsApp}) в ${new Date().toISOString()}`);
 
     res.status(201).json({
+      success: true,
       message: 'Регистрация успешна! Теперь вы можете войти в систему.',
       userId: newUser._id,
       requiresVerification: false
