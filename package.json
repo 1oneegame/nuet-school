@@ -40,11 +40,7 @@
     "react-icons": "^4.11.0",
     "react-player": "^2.13.0",
     "resend": "^6.0.1",
-<<<<<<< HEAD
 
-=======
-    "styled-jsx": "^5.1.7",
->>>>>>> 5ffda5cc3a10ec8aaef45a877569cc1096634dd1
     "tailwindcss": "^3.3.0",
     "ua-parser-js": "^2.0.4",
     "uuid": "^11.1.0",
