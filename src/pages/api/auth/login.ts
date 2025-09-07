@@ -4,7 +4,7 @@ import dbConnect from '../../../backend/lib/dbConnect';
 import User from '../../../backend/models/User';
 import { withErrorHandler, createApiError } from '../../../middleware/apiErrorHandler';
 
-async function loginHandler(
+async function POST(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -95,4 +95,4 @@ async function loginHandler(
   });
 }
 
-export default withErrorHandler(loginHandler);
+export default withErrorHandler(POST);

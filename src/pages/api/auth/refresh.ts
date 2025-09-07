@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import dbConnect from '../../../backend/lib/dbConnect';
 import User from '../../../backend/models/User';
 
-export default async function handler(
+export default async function POST(
   req: NextApiRequest,
   res: NextApiResponse
 ) {

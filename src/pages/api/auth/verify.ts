@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next';
 import { AuthenticatedRequest, withAdminAuth } from '../../../middleware/auth';
 
-const handler = async (req: AuthenticatedRequest, res: NextApiResponse) => {
+const GET = async (req: AuthenticatedRequest, res: NextApiResponse) => {
   if (req.method !== 'GET') {
     return res.status(405).json({ message: 'Метод не разрешен' });
   }
@@ -22,4 +22,4 @@ const handler = async (req: AuthenticatedRequest, res: NextApiResponse) => {
   }
 };
 
-export default withAdminAuth(handler);
+export default withAdminAuth(GET);
