@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { authManager } from '../../utils/authManager';
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
@@ -54,7 +55,8 @@ const AuthPage: React.FC = () => {
 
       if (isLogin) {
         // Вход в систему
-        const response = await fetch('/api/auth/login', {
+        const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+        const response = await fetch(`${baseUrl}/api/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -62,19 +64,28 @@ const AuthPage: React.FC = () => {
           body: JSON.stringify({ email, password }),
         });
 
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || 'Ошибка входа в систему');
+        let data;
+        const contentType = response.headers.get('content-type');
+        
+        if (contentType && contentType.includes('application/json')) {
+          try {
+            data = await response.json();
+          } catch (jsonError) {
+            console.error('JSON parsing error:', jsonError);
+            throw new Error('Ошибка сервера: неверный формат ответа');
+          }
+        } else {
+          const textResponse = await response.text();
+          console.error('Non-JSON response:', textResponse);
+          throw new Error('Ошибка сервера: сервер вернул некорректный ответ');
         }
 
-        // Сохраняем токен в localStorage и cookies
+        if (!response.ok) {
+          throw new Error(data?.message || `Ошибка сервера (${response.status})`);
+        }
+
         if (data.token) {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data.user));
-          
-          // Сохраняем токен в cookies для серверной проверки
-          document.cookie = `token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
+          authManager.setAuth(data.token, data.user);
         }
 
         setIsSuccess(true);

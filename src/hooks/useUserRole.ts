@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { authManager } from '../utils/authManager';
 
 interface User {
   id: string;
@@ -24,20 +25,13 @@ export const useUserRole = (): UseUserRoleReturn => {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        // Сначала проверяем localStorage
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-          const parsedUser = JSON.parse(storedUser);
-          setUser(parsedUser);
-        }
-
-        // Затем проверяем сессию через API
-        const response = await fetch('/api/auth/session');
-        if (response.ok) {
-          const sessionData = await response.json();
-          if (sessionData.user) {
-            setUser(sessionData.user);
-            localStorage.setItem('user', JSON.stringify(sessionData.user));
+        const currentUser = authManager.getUser();
+        if (currentUser && authManager.isAuthenticated()) {
+          setUser(currentUser);
+        } else {
+          const isAuth = await authManager.checkAuthStatus();
+          if (isAuth) {
+            setUser(authManager.getUser());
           }
         }
       } catch (error) {

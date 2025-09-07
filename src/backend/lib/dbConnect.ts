@@ -25,12 +25,16 @@ async function dbConnect() {
   }
 
   if (!cached.promise) {
+    const isProduction = process.env.NODE_ENV === 'production';
+    
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 5000, // 5 second timeout
-      socketTimeoutMS: 45000,
-      maxPoolSize: 10,
-      minPoolSize: 5,
+      serverSelectionTimeoutMS: isProduction ? 10000 : 5000,
+      socketTimeoutMS: isProduction ? 60000 : 45000,
+      maxPoolSize: isProduction ? 20 : 10,
+      minPoolSize: isProduction ? 5 : 2,
+      retryWrites: true,
+      w: 'majority',
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
@@ -39,7 +43,12 @@ async function dbConnect() {
     }).catch((error) => {
       console.error('❌ Ошибка подключения к MongoDB:', error.message);
       cached.promise = null;
-      throw error;
+      
+      if (isProduction) {
+        throw new Error(`Database connection failed: ${error.message}`);
+      } else {
+        throw new Error('❌ Не удалось подключиться к MongoDB. Убедитесь, что MongoDB запущен на localhost:27017');
+      }
     });
   }
 
@@ -47,7 +56,7 @@ async function dbConnect() {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    console.error('❌ Не удалось подключиться к MongoDB. Убедитесь, что MongoDB запущен на localhost:27017');
+    console.error('❌ Database connection error:', e);
     throw e;
   }
 

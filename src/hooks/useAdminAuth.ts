@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { authManager } from '../utils/authManager';
 
 interface User {
   userId: string;
@@ -24,68 +25,38 @@ export const useAdminAuth = (): UseAdminAuthReturn => {
 
   const checkAuth = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const userData = localStorage.getItem('user');
+      const user = authManager.getUser();
+      const isAuth = authManager.isAuthenticated();
 
-      if (!token || !userData) {
+      if (!isAuth || !user) {
         setIsAuthenticated(false);
         setUser(null);
         setIsLoading(false);
         return;
       }
 
-      const parsedUser = JSON.parse(userData);
-      
-      // Проверяем, что пользователь является администратором
-      if (parsedUser.role !== 'admin') {
+      if (user.role !== 'admin') {
         setIsAuthenticated(false);
         setUser(null);
-        // Очищаем неправильные данные
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        authManager.logout();
         setIsLoading(false);
         return;
       }
 
-      // Проверяем валидность токена на сервере
-      const response = await fetch('/api/auth/verify', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success && data.user.role === 'admin') {
-          setIsAuthenticated(true);
-          setUser(data.user);
-        } else {
-          setIsAuthenticated(false);
-          setUser(null);
-          // Очищаем недействительные данные
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-        }
+      const isValidAuth = await authManager.checkAuthStatus();
+      if (isValidAuth) {
+        setIsAuthenticated(true);
+        setUser(user);
       } else {
         setIsAuthenticated(false);
         setUser(null);
-        // Очищаем недействительные данные
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        authManager.logout();
       }
     } catch (error) {
       console.error('Auth check error:', error);
       setIsAuthenticated(false);
       setUser(null);
-      // Очищаем данные при ошибке
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      authManager.logout();
     } finally {
       setIsLoading(false);
     }
@@ -96,12 +67,10 @@ export const useAdminAuth = (): UseAdminAuthReturn => {
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    authManager.logout();
     setIsAuthenticated(false);
     setUser(null);
-    router.push('/admin');
+    router.push('/auth');
   };
 
   useEffect(() => {
