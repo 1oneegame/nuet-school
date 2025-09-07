@@ -34,7 +34,7 @@ async function dbConnect() {
       maxPoolSize: isProduction ? 20 : 10,
       minPoolSize: isProduction ? 5 : 2,
       retryWrites: true,
-      w: 'majority',
+      w: 'majority' as const,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
