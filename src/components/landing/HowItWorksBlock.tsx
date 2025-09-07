@@ -1,5 +1,5 @@
 import React from 'react';
-import { HowItWorksBlock as HowItWorksBlockType } from '../../frontend/types';
+import { HowItWorksBlock as HowItWorksBlockType } from '../../types/frontend';
 
 interface HowItWorksBlockProps {
   data: HowItWorksBlockType;

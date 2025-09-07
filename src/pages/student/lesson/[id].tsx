@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PDFViewer from '../../../components/common/PDFViewer';
+import { studentAPI } from '@/utils/api';
 
 interface LessonData {
   id: string;
@@ -50,11 +51,8 @@ const LessonPage: React.FC = () => {
   // Fetch PDF materials from API
   const fetchPdfMaterials = async () => {
     try {
-      const response = await fetch('/api/student/materials');
-      if (response.ok) {
-        const result = await response.json();
-        setPdfMaterials(result.data || []);
-      }
+      const { data } = await studentAPI.getMaterials();
+      setPdfMaterials((data && data.data) || data || []);
     } catch (err) {
       console.error('Error fetching PDF materials:', err);
     }
@@ -67,13 +65,7 @@ const LessonPage: React.FC = () => {
       
       try {
         setLoading(true);
-        const response = await fetch(`/api/student/lessons/${id}`);
-        
-        if (!response.ok) {
-          throw new Error('Урок не найден');
-        }
-        
-        const data = await response.json();
+        const { data } = await studentAPI.getLesson(String(id));
         setLessonData(data);
         setError(null);
         

@@ -1,14 +1,18 @@
-import '../frontend/styles/globals.css';
+import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { authManager } from '../utils/authManager';
 import '../utils/testAuth';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   useEffect(() => {
-    authManager.checkAuthStatus();
-  }, []);
+    if (router.pathname.startsWith('/admin')) {
+      authManager.checkAuthStatus();
+    }
+  }, [router.pathname]);
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { TestimonialBlock as TestimonialBlockType } from '../../frontend/types';
+import { TestimonialBlock as TestimonialBlockType } from '../../types/frontend';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 interface TestimonialBlockProps {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { studentAPI } from '@/utils/api';
 
 interface Lesson {
   id: string;
@@ -22,18 +23,11 @@ const VideoCourse: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch modules data from API
   useEffect(() => {
     const fetchModules = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/student/modules');
-        
-        if (!response.ok) {
-          throw new Error('Ошибка загрузки модулей');
-        }
-        
-        const data = await response.json();
+        const { data } = await studentAPI.getModules();
         setModules(data);
         setError(null);
       } catch (err) {
@@ -64,7 +58,7 @@ const VideoCourse: React.FC = () => {
           <div className="text-red-500 text-6xl mb-4">⚠️</div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Ошибка</h1>
           <p className="text-gray-600 mb-4">{error}</p>
-          <Link href="/student" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+          <Link href="/dashboard" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
             ← Назад
           </Link>
         </div>
@@ -79,7 +73,7 @@ const VideoCourse: React.FC = () => {
           <div className="text-gray-400 text-6xl mb-4">📚</div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Модули не найдены</h1>
           <p className="text-gray-600 mb-4">Пока нет доступных модулей для изучения</p>
-          <Link href="/student" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+          <Link href="/dashboard" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
             ← Назад
           </Link>
         </div>

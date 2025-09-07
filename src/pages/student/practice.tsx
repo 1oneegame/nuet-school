@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { examsAPI } from '../../frontend/utils/api';
+import { examsAPI } from '../../utils/api';
 
 interface Answer {
   text: string;

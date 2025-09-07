@@ -108,4 +108,104 @@ const UserTaskResultSchema: Schema = new Schema(
 const CriticalTask = mongoose.models.CriticalTask || mongoose.model<ICriticalTask>('CriticalTask', CriticalTaskSchema);
 const UserTaskResult = mongoose.models.UserTaskResult || mongoose.model<IUserTaskResult>('UserTaskResult', UserTaskResultSchema);
 
-export { CriticalTask, UserTaskResult };
+export interface ICriticalThinkingQuestion extends Document {
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+  textExplanation?: string;
+  hint?: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  category: 'logic' | 'analysis' | 'reasoning' | 'comprehension' | 'evaluation';
+  tags: string[];
+  imageUrl?: string;
+  imagePath?: string;
+  isActive: boolean;
+  createdBy?: mongoose.Types.ObjectId;
+  updatedBy?: mongoose.Types.ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ICriticalThinkingExam extends Document {
+  title: string;
+  description: string;
+  timeLimit: number;
+  difficulty: 'easy' | 'medium' | 'hard' | 'mixed';
+  questions: mongoose.Types.ObjectId[];
+  maxQuestions: number;
+  isPublished: boolean;
+  publishedAt?: Date;
+  createdBy?: mongoose.Types.ObjectId;
+  updatedBy?: mongoose.Types.ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const CriticalThinkingQuestionSchema: Schema = new Schema(
+  {
+    question: { type: String, required: true, trim: true },
+    options: [{ type: String, required: true }],
+    correctAnswer: { type: Number, required: true },
+    explanation: { type: String, required: true, trim: true },
+    textExplanation: { type: String, trim: true },
+    hint: { type: String, trim: true },
+    difficulty: { type: String, enum: ['easy', 'medium', 'hard'], default: 'medium' },
+    category: { type: String, enum: ['logic', 'analysis', 'reasoning', 'comprehension', 'evaluation'], default: 'logic' },
+    tags: [{ type: String, trim: true }],
+    imageUrl: { type: String, trim: true },
+    imagePath: { type: String, trim: true },
+    isActive: { type: Boolean, default: true },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  },
+  { timestamps: true }
+);
+
+// Indexes for performance
+CriticalThinkingQuestionSchema.index({ category: 1, difficulty: 1, isActive: 1 });
+CriticalThinkingQuestionSchema.index({ createdBy: 1 });
+CriticalThinkingQuestionSchema.index({ tags: 1 });
+
+const CriticalThinkingExamSchema: Schema = new Schema(
+  {
+    title: { type: String, required: true, trim: true, maxlength: 150 },
+    description: { type: String, required: true, trim: true },
+    timeLimit: { type: Number, required: true },
+    difficulty: { type: String, enum: ['easy', 'medium', 'hard', 'mixed'], default: 'mixed' },
+    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'CriticalThinkingQuestion' }],
+    maxQuestions: { type: Number, default: 30 },
+    isPublished: { type: Boolean, default: false },
+    publishedAt: { type: Date },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  },
+  { timestamps: true }
+);
+
+// Indexes
+CriticalThinkingExamSchema.index({ isPublished: 1, createdAt: -1 });
+CriticalThinkingExamSchema.index({ createdBy: 1 });
+
+// Virtuals
+CriticalThinkingExamSchema.virtual('questionCount').get(function (this: any) {
+  return this.questions ? this.questions.length : 0;
+});
+
+// Pre-save hook to set publishedAt
+CriticalThinkingExamSchema.pre('save', function (this: any, next) {
+  if (this.isModified('isPublished') && this.isPublished && !this.publishedAt) {
+    this.publishedAt = new Date();
+  }
+  next();
+});
+
+const CriticalThinkingQuestion =
+  mongoose.models.CriticalThinkingQuestion ||
+  mongoose.model<ICriticalThinkingQuestion>('CriticalThinkingQuestion', CriticalThinkingQuestionSchema);
+
+const CriticalThinkingExam =
+  mongoose.models.CriticalThinkingExam ||
+  mongoose.model<ICriticalThinkingExam>('CriticalThinkingExam', CriticalThinkingExamSchema);
+
+export { CriticalTask, UserTaskResult, CriticalThinkingQuestion, CriticalThinkingExam };

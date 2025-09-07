@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import EditableContent from '../../components/common/EditableContent';
-import { criticalAPI } from '../../frontend/utils/api';
+import { criticalAPI } from '../../utils/api';
 
 interface CriticalThinkingQuestion {
   _id: string;

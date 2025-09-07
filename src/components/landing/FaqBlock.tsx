@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaqBlock as FaqBlockType } from '../../frontend/types';
+import { FaqBlock as FaqBlockType } from '../../types/frontend';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
 interface FaqBlockProps {

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { authAPI } from '@/utils/api';
 
 interface TokenData {
   userId: string;
@@ -106,16 +107,8 @@ class AuthManager {
 
   private async refreshToken() {
     try {
-      const response = await fetch('/api/auth/refresh', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${this.token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
+      const { data } = await authAPI.refresh();
+      if (data?.token) {
         this.setAuth(data.token, data.user);
       } else {
         this.logout();
@@ -182,19 +175,7 @@ class AuthManager {
     if (!this.token) return false;
     
     try {
-      const response = await fetch('/api/auth/verify', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${this.token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        this.logout();
-        return false;
-      }
-
+      await authAPI.verify();
       return true;
     } catch (error) {
       this.logout();

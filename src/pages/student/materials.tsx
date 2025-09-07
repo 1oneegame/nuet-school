@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { studentAPI } from '@/utils/api';
 
 interface Material {
   _id: string;
@@ -29,11 +30,11 @@ const Materials: React.FC = () => {
 
   const fetchMaterials = async () => {
     try {
-      const response = await fetch('/api/admin/materials');
-      const data = await response.json();
-      if (data.success) {
-        // Показываем только видимые материалы
+      const { data } = await studentAPI.getMaterials();
+      if (data?.success) {
         setMaterials(data.data.filter((material: Material) => material.isVisible));
+      } else if (Array.isArray(data)) {
+        setMaterials((data as any[]).filter((m: any) => m.isVisible));
       }
     } catch (error) {
       console.error('Error fetching materials:', error);

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { FeatureBlock as FeatureBlockType } from '../../frontend/types';
+import { FeatureBlock as FeatureBlockType } from '../../types/frontend';
 import { FiCheck, FiStar, FiAward, FiClock, FiBook, FiTrendingUp } from 'react-icons/fi';
 
 interface FeatureBlockProps {

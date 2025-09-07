@@ -7,6 +7,17 @@ const api = axios.create({
   },
 });
 
+api.interceptors.request.use((config) => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers = config.headers || {};
+      (config.headers as any).Authorization = `Bearer ${token}`;
+    }
+  }
+  return config;
+});
+
 // Добавляем перехватчик для обработки ошибок
 api.interceptors.response.use(
   (response) => response,
@@ -23,10 +34,11 @@ api.interceptors.response.use(
 export const authAPI = {
   login: (email: string, password: string) =>
     api.post('/auth/login', { email, password }),
-  register: (name: string, email: string, password: string) =>
-    api.post('/auth/register', { name, email, password }),
+  register: (payload: any) => api.post('/auth/register', payload),
   logout: () => api.post('/auth/logout'),
   getProfile: () => api.get('/auth/profile'),
+  refresh: () => api.post('/auth/refresh'),
+  verify: () => api.get('/auth/verify'),
 };
 
 // Курсы и видео
@@ -80,7 +92,7 @@ export const resourcesAPI = {
 // Админ API
 export const adminAPI = {
   // Пользователи
-  getUsers: () => api.get('/admin/users'),
+  getUsers: (params?: any) => api.get('/admin/users', { params }),
   getUser: (id: string) => api.get(`/admin/users/${id}`),
   createUser: (userData: any) => api.post('/admin/users', userData),
   updateUser: (id: string, userData: any) =>
@@ -88,6 +100,12 @@ export const adminAPI = {
   deleteUser: (id: string) => api.delete(`/admin/users/${id}`),
 
 
+};
+
+export const studentAPI = {
+  getModules: () => api.get('/student/modules'),
+  getLesson: (id: string | number) => api.get(`/student/lessons/${id}`),
+  getMaterials: () => api.get('/student/materials'),
 };
 
 export default api;

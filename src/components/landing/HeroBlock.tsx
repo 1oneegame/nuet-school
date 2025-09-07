@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { HeroBlock as HeroBlockType } from '../../frontend/types';
+import { HeroBlock as HeroBlockType } from '../../types/frontend';
 
 interface HeroBlockProps {
   data: HeroBlockType;

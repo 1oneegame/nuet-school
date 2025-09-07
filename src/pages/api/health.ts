@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '../../backend/lib/dbConnect';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.setHeader('Content-Type', 'application/json');
+
   
   try {
     await dbConnect();

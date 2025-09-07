@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import jwt from 'jsonwebtoken';
+import { adminAPI } from '@/utils/api';
 
 interface User {
   id: string;
@@ -63,29 +64,17 @@ const UsersPage: React.FC<UsersPageProps> = ({
   const loadUsers = async (page = 1) => {
     setLoading(true);
     try {
-      const params = new URLSearchParams({
-        page: page.toString(),
-        limit: '20',
+      const { data } = await adminAPI.getUsers({
+        page,
+        limit: 20,
         search: searchTerm,
         role: roleFilter,
-        accessStatus: accessFilter
+        accessStatus: accessFilter,
       });
-
-      const response = await fetch(`/api/admin/users?${params}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setUsers(data.users);
-        setStats(data.statistics);
-        setPagination(data.pagination);
-        setCurrentPage(page);
-      } else {
-        console.error('Ошибка загрузки пользователей');
-      }
+      setUsers(data.users);
+      setStats(data.statistics);
+      setPagination(data.pagination);
+      setCurrentPage(page);
     } catch (error) {
       console.error('Ошибка:', error);
     } finally {
@@ -96,36 +85,16 @@ const UsersPage: React.FC<UsersPageProps> = ({
   // Обновление доступа пользователя
   const updateUserAccess = async (userId: string, hasAccess: boolean) => {
     try {
-      const response = await fetch('/api/admin/users', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
-          userId,
-          hasStudentAccess: hasAccess,
-          reason: accessReason
-        })
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        // Обновляем пользователя в списке
-        setUsers(users.map(user => 
-          user.id === userId 
-            ? { ...user, hasStudentAccess: hasAccess }
-            : user
-        ));
-        setShowAccessModal(false);
-        setSelectedUser(null);
-        setAccessReason('');
-        // Перезагружаем статистику
-        loadUsers(currentPage);
-      } else {
-        const error = await response.json();
-        alert(error.message || 'Ошибка обновления доступа');
-      }
+      await adminAPI.updateUser(userId, { hasStudentAccess: hasAccess, reason: accessReason });
+      setUsers(users.map(user => 
+        user.id === userId 
+          ? { ...user, hasStudentAccess: hasAccess }
+          : user
+      ));
+      setShowAccessModal(false);
+      setSelectedUser(null);
+      setAccessReason('');
+      loadUsers(currentPage);
     } catch (error) {
       console.error('Ошибка:', error);
       alert('Ошибка обновления доступа');
@@ -135,31 +104,15 @@ const UsersPage: React.FC<UsersPageProps> = ({
   // Обновление статуса ученика школы
   const updateSchoolStudentStatus = async (userId: string, isSchoolStudent: boolean) => {
     try {
-      const response = await fetch('/api/admin/users', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
-          userId,
-          isSchoolStudent,
-          reason: `Изменение статуса на ${isSchoolStudent ? 'ученик школы' : 'внешний пользователь'}`
-        })
+      await adminAPI.updateUser(userId, { 
+        isSchoolStudent, 
+        reason: `Изменение статуса на ${isSchoolStudent ? 'ученик школы' : 'внешний пользователь'}` 
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        // Обновляем пользователя в списке
-        setUsers(users.map(user => 
-          user.id === userId 
-            ? { ...user, isSchoolStudent }
-            : user
-        ));
-      } else {
-        const error = await response.json();
-        alert(error.message || 'Ошибка обновления статуса ученика');
-      }
+      setUsers(users.map(user => 
+        user.id === userId 
+          ? { ...user, isSchoolStudent }
+          : user
+      ));
     } catch (error) {
       console.error('Ошибка:', error);
       alert('Ошибка обновления статуса ученика');

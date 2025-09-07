@@ -1,7 +1,9 @@
+'use client'
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { authManager } from '../../utils/authManager';
+import { authAPI } from '@/utils/api';
 
 const AuthPage: React.FC = () => {
   const router = useRouter();
@@ -54,72 +56,28 @@ const AuthPage: React.FC = () => {
       }
 
       if (isLogin) {
-        // Вход в систему
-        const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-        const response = await fetch(`${baseUrl}/api/auth/login`, {
-          method: 'POST',
-          body: JSON.stringify({ email, password }),
-        });
-
-        let data;
-        const contentType = response.headers.get('content-type');
-        
-        if (contentType && contentType.includes('application/json')) {
-          try {
-            data = await response.json();
-          } catch (jsonError) {
-            console.error('JSON parsing error:', jsonError);
-            throw new Error('Ошибка сервера: неверный формат ответа');
-          }
-        } else {
-          const textResponse = await response.text();
-          console.error('Non-JSON response:', textResponse);
-          throw new Error('Ошибка сервера: сервер вернул некорректный ответ');
-        }
-
-        if (!response.ok) {
-          throw new Error(data?.message || `Ошибка сервера (${response.status})`);
-        }
-
-        if (data.token) {
+        const { data } = await authAPI.login(email, password);
+        if (data?.token) {
           authManager.setAuth(data.token, data.user);
         }
-
         setIsSuccess(true);
-        
-        // Перенаправление на основе роли пользователя
         setTimeout(() => {
-          router.push(data.redirectTo || '/dashboard');
+          router.push(data?.redirectTo || '/dashboard');
         }, 1500);
       } else {
-        // Регистрация
-        const response = await fetch('/api/auth/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            firstName, 
-            lastName, 
-            email, 
-            password, 
-            confirmPassword,
-            whatsappNumber 
-          }),
+        const { data } = await authAPI.register({ 
+          firstName, 
+          lastName, 
+          email, 
+          password, 
+          confirmPassword,
+          whatsappNumber 
         });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || 'Ошибка регистрации');
+        if (!data?.success && data?.message) {
+          throw new Error(data.message);
         }
-
         setIsSuccess(true);
-        
-        // Показываем сообщение об успешной регистрации
         setError('Регистрация успешна! Вы можете зарегистрировать еще одного пользователя или перейти к входу.');
-        
-        // Очищаем форму для новой регистрации
         setTimeout(() => {
           setFirstName('');
           setLastName('');

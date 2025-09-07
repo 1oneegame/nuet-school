@@ -4,10 +4,14 @@ import dbConnect from '../../../backend/lib/dbConnect';
 import User from '../../../backend/models/User';
 import { createApiError } from '../../../middleware/apiErrorHandler';
 
-export async function POST(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ 
+      success: false, 
+      message: 'Method not allowed' 
+    });
+  }
+
   res.setHeader('Content-Type', 'application/json');
   
   console.log('Login attempt:', {
