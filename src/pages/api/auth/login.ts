@@ -2,9 +2,23 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import dbConnect from '../../../backend/lib/dbConnect';
 import User from '../../../backend/models/User';
-import { createApiError } from '../../../middleware/apiErrorHandler';
+import { createApiError, withErrorHandler } from '../../../middleware/apiErrorHandler';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const isProd = process.env.NODE_ENV === 'production';
+  const defaultOrigin = process.env.NEXTAUTH_URL!; // !!!
+  const configuredOrigin = process.env.ALLOWED_ORIGIN as string;
+  const requestOrigin = req.headers.origin as string;
+  const origin = configuredOrigin || requestOrigin || defaultOrigin;
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ 
       success: false, 
@@ -13,7 +27,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   res.setHeader('Content-Type', 'application/json');
-  
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+
   console.log('Login attempt:', {
     method: req.method,
     hasBody: !!req.body,
@@ -70,7 +85,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     { expiresIn: '7d' }
   );
 
-  res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Path=/; Max-Age=604800; SameSite=Strict`);
+  const sameSite = isProd ? 'None' : 'Strict';
+  const secure = isProd ? '; Secure' : '';
+  res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Path=/; Max-Age=604800; SameSite=${sameSite}${secure}`);
 
   let redirectTo = '/user-dashboard';
   if (user.role === 'Admin') {
@@ -94,3 +111,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     redirectTo
   });
 }
+
+export default withErrorHandler(handler as any);
