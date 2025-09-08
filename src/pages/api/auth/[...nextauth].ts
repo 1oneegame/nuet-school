@@ -3,8 +3,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { JWT } from 'next-auth/jwt';
 import { Session } from 'next-auth';
-// В будущем здесь будет импорт моделей пользователей из базы данных
-// import User from '@/backend/models/User';
+import dbConnect from '../../../backend/lib/dbConnect';
+import User from '../../../backend/models/User';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -18,47 +18,25 @@ export const authOptions: AuthOptions = {
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Необходимо указать email и пароль');
         }
-
-        // Здесь будет проверка пользователя в базе данных
-        // Временная заглушка для демонстрации
-        const mockUsers = [
-          {
-            id: '1',
-            name: 'Тестовый пользователь',
-            email: 'test@example.com',
-            password: bcrypt.hashSync('password123', 10),
-            role: 'user'
-          },
-          {
-            id: '2',
-            name: 'Администратор',
-            email: 'admin@example.com',
-            password: bcrypt.hashSync('admin123', 10),
-            role: 'admin'
-          }
-        ];
-
-        const user = mockUsers.find(user => user.email === credentials.email);
-
+        await dbConnect();
+        const user = await User.findOne({ email: credentials.email.toLowerCase() }).select('+password');
         if (!user) {
           throw new Error('Пользователь не найден');
         }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
-
-        if (!isPasswordValid) {
+        const valid = await bcrypt.compare(credentials.password, user.password);
+        if (!valid) {
           throw new Error('Неверный пароль');
         }
-
+        if (!['Admin', 'Student', 'User'].includes(user.role)) {
+          throw new Error('Доступ запрещён');
+        }
         return {
-          id: user.id,
-          name: user.name,
+          id: String(user._id),
+          name: `${user.firstName} ${user.lastName}`.trim(),
           email: user.email,
-          role: user.role
-        };
+          role: user.role,
+          hasStudentAccess: user.hasStudentAccess
+        } as any;
       }
     })
   ],
@@ -69,15 +47,17 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, user }: { token: JWT; user: any }) {
       if (user) {
-        token.id = user.id;
-        token.role = user.role;
+        token.id = (user as any).id;
+        token.role = (user as any).role as any;
+        (token as any).hasStudentAccess = (user as any).hasStudentAccess as any;
       }
       return token;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       if (token) {
-        session.user.id = token.id;
-        session.user.role = token.role;
+        (session.user as any).id = (token as any).id as any;
+        (session.user as any).role = (token as any).role as any;
+        (session.user as any).hasStudentAccess = (token as any).hasStudentAccess as any;
       }
       return session;
     }

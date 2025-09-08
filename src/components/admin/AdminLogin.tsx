@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { signIn, getSession } from 'next-auth/react';
 
 interface AdminLoginProps {
   onLoginSuccess: () => void;
@@ -19,36 +20,19 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
     setError('');
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        // Проверяем, что пользователь является администратором
-        if (data.user.role !== 'admin') {
-          setError('Доступ запрещен. Требуются права администратора.');
-          return;
-        }
-
-        // Сохраняем токен и данные пользователя
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        
-        // Устанавливаем cookie для серверной авторизации
-        document.cookie = `token=${data.token}; path=/; max-age=86400; secure; samesite=strict`;
-        
-        onLoginSuccess();
-      } else {
-        setError(data.message || 'Ошибка входа в систему');
+      const result = await signIn('credentials', { redirect: false, email, password });
+      if (!result || result.error) {
+        setError(result?.error || 'Ошибка входа в систему');
+        return;
       }
+      const session = await getSession();
+      const role = (session?.user as any)?.role;
+      if (role !== 'Admin') {
+        setError('Доступ запрещен. Требуются права администратора.');
+        return;
+      }
+      onLoginSuccess();
     } catch (error) {
-      console.error('Login error:', error);
       setError('Произошла ошибка при входе в систему');
     } finally {
       setIsLoading(false);

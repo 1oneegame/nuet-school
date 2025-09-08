@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { authManager } from '../../utils/authManager';
+import { signIn } from 'next-auth/react';
 import { authAPI } from '@/utils/api';
 
 const AuthPage: React.FC = () => {
@@ -56,16 +56,18 @@ const AuthPage: React.FC = () => {
       }
 
       if (isLogin) {
-        const { data } = await authAPI.login(email, password);
-        if (!data?.success || !data?.token) {
-          throw new Error(data?.message || 'Ошибка входа');
+        const result = await signIn('credentials', {
+          redirect: false,
+          email,
+          password
+        });
+        if (!result || result.error) {
+          throw new Error(result?.error || 'Ошибка входа');
         }
-        authManager.setAuth(data.token, data.user);
         setIsSuccess(true);
-        const redirect = data?.redirectTo || (data?.user?.role === 'Admin' ? '/admin' : '/dashboard');
         setTimeout(() => {
-          router.push(redirect);
-        }, 1500);
+          router.push('/user-dashboard');
+        }, 800);
       } else {
         const { data } = await authAPI.register({ 
           firstName, 
